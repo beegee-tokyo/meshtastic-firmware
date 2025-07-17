@@ -798,7 +798,12 @@ void setup()
         SPI.begin();
     }
 #elif !defined(ARCH_ESP32) // ARCH_RP2040
+#ifdef _RAK3401_
+	SPI1.setPins(LORA_MISO, LORA_SCK, LORA_MOSI);
+	SPI1.begin();
+#else
     SPI.begin();
+#endif
 #else
         // ESP32
 #if defined(HW_SPI1_DEVICE)
